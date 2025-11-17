@@ -29,6 +29,10 @@ public class Book {
     @OneToMany(mappedBy = "book_id", fetch = FetchType.LAZY)
    private List<Book> books = new ArrayList<>();
 
+    public int getId() {
+        return id;
+    }
+
     public String getTitle() {
         return title;
     }
