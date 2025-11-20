@@ -3,10 +3,7 @@ package repository;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import util.Util;
-
 import model.Book;
-
-import java.sql.SQLException;
 import java.util.List;
 
 public class BookDAO {
@@ -97,7 +94,7 @@ public class BookDAO {
         }
         return null;
     }
-    public List <Book>  findBooksAuthors(int author_id){
+    public List<Book> findBooksAuthors(int author_id){
         try (
                 Session session = Util.getSessionFactory().openSession()) {
 
