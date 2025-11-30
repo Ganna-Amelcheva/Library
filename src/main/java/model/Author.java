@@ -9,7 +9,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "authors")
-@AllArgsConstructor
 @NoArgsConstructor
 public class Author {
     @Id
@@ -21,8 +20,14 @@ public class Author {
     private String country;
     @Column(name ="birth_date")
     private String birth_date;
-    @OneToMany(mappedBy = "author_id", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY)
     private List<Book> books = new ArrayList<>();
+
+    public Author(String name, String country, String birth_date) {
+        this.name = name;
+        this.country = country;
+        this.birth_date = birth_date;
+    }
 
     public String getName() {
         return name;

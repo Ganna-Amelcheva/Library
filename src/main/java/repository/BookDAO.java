@@ -42,9 +42,9 @@ public class BookDAO {
         try (Session session = Util.getSessionFactory().openSession();
         ) {
             transaction = session.beginTransaction();
-            String sql = "Update Book set title=:title, author_id=:author_id, year=:year Where id=:id";
+            String sql = "Update Book set title=:title, author=:author_id, year=:year Where id=:id";
             session.createQuery(sql).setParameter("title", book.getTitle())
-                    .setParameter("author_id", book.getAuthor_id())
+                    .setParameter("author_id", book.getAuthor())
                     .setParameter("year", book.getYear())
                     .setParameter("id", book.getId())
                     .executeUpdate();
@@ -98,7 +98,7 @@ public class BookDAO {
         try (
                 Session session = Util.getSessionFactory().openSession()) {
 
-            return session.createQuery("From Book Where Book.author_id=:author_id", Book.class)
+            return session.createQuery("From Book Where Book.author=:author_id", Book.class)
                     .setParameter("author_id", author_id).stream().toList();
 
         } catch (Exception e) {

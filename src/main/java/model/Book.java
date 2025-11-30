@@ -1,6 +1,5 @@
 package model;
 
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -9,7 +8,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "books")
-@AllArgsConstructor
 @NoArgsConstructor
 public class Book {
     @Id
@@ -18,16 +16,24 @@ public class Book {
     @Column(name = "title", nullable = false)
     private String title;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
-    private Author author_id;
+    @JoinColumn(name = "author")
+    private Author author;
     @Column(name="isbn", unique = true)
     private int isbn;
     @Column(name = "year")
     private int year;
     @Column(name = "quantity")
     private int quantity = 1;
-    @OneToMany(mappedBy = "book_id", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "book", fetch = FetchType.LAZY)
    private List<Book> books = new ArrayList<>();
+
+    public Book(String title, Author author_id, int isbn, int year, int quantity) {
+        this.title = title;
+        this.author = author_id;
+        this.isbn = isbn;
+        this.year = year;
+        this.quantity = quantity;
+    }
 
     public int getId() {
         return id;
@@ -41,12 +47,12 @@ public class Book {
         this.title = title;
     }
 
-    public Author getAuthor_id() {
-        return author_id;
+    public Author getAuthor() {
+        return author;
     }
 
-    public void setAuthor_id(Author author_id) {
-        this.author_id = author_id;
+    public void setAuthor(Author author_id) {
+        this.author = author_id;
     }
 
     public int getIsbn() {

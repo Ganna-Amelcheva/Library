@@ -14,11 +14,11 @@ public class Borrowing {
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private int id;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "book_id")
-    private Book book_id;
+    @JoinColumn(name = "book")
+    private Book book;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "reader_id")
-    private Reader reader_id;
+    @JoinColumn(name = "reader")
+    private Reader reader;
     @Column(name = "borrow_date", nullable = false)
     private LocalDate borrow_date;
     @Column(name = "return_date")
@@ -26,20 +26,20 @@ public class Borrowing {
     @Column(name = "expected_return_date", nullable = false)
     private LocalDate expected_return_date;
 
-    public Book getBook_id() {
-        return book_id;
+    public Book getBook() {
+        return book;
     }
 
-    public void setBook_id(Book book_id) {
-        this.book_id = book_id;
+    public void setBook(Book book_id) {
+        this.book = book_id;
     }
 
-    public Reader getReader_id() {
-        return reader_id;
+    public Reader getReader() {
+        return reader;
     }
 
-    public void setReader_id(Reader reader_id) {
-        this.reader_id = reader_id;
+    public void setReader(Reader reader_id) {
+        this.reader = reader_id;
     }
 
     public LocalDate getBorrow_date() {

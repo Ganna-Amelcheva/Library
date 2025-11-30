@@ -10,7 +10,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "readers")
-@AllArgsConstructor
 @NoArgsConstructor
 public class Reader {
     @Id
@@ -26,8 +25,16 @@ public class Reader {
     private String phone;
     @Column(name = "registration_date")
     private LocalDate registration_date = LocalDate.now();
-    @OneToMany(mappedBy = "reader_id", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "reader", fetch = FetchType.LAZY)
     private List<Borrowing> borrow = new ArrayList<>();
+
+    public Reader(String first_name, String last_name, String email, String phone) {
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.email = email;
+        this.phone = phone;
+    }
+
 
     public String getFirst_name() {
         return first_name;

@@ -18,7 +18,7 @@ public final class Util {
 
     static {
 SESSION_FACTORY = new Configuration()
-        .configure("hibernate.properties")
+        .configure("hibernate-config.xml")
         .addAnnotatedClass(Author.class)
         .addAnnotatedClass(Book.class)
         .addAnnotatedClass(Reader.class)
